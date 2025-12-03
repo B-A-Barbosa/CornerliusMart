@@ -13,4 +13,10 @@ public class Item {
         this.stock = stock;
         this.price = price;
     }
+    public String getName() {
+        return name;
+    }
+    public float getPrice() {
+        return price;
+    }
 }
