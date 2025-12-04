@@ -7,7 +7,8 @@ public class Item {
     protected String desc;
     protected String brand;     
     protected int stock;
-    protected float price; 
+    protected float price;
+    protected float percentOff;
     protected boolean onsale; 
     protected ArrayList<Object> list;
 
@@ -20,10 +21,17 @@ public class Item {
     }
 
     public void putOnSale(float percentOff) {
+        this.percentOff = percentOff;
         if (percentOff < 0 || percentOff > 100) return;
 
         price = price - (price * (percentOff / 100f));
         this.onsale = true; 
+    }
+    public void takeOffSale() {
+        if (this.onsale) {
+            price = price / (1 - (percentOff / 100f));
+            this.onsale = false; 
+        }
     }
 
     public void returnToShelf(int amount){
