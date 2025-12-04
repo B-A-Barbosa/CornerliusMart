@@ -24,8 +24,8 @@ public class Cart {
     //In the case that a new cart is created
     public Cart(String userID) {
         this.userID = userID;
-        this.ItemList = new ArrayList<Item>();
-        itemCount = new HashMap<String, Integer>();
+        this.ItemList = new ArrayList<>();
+        itemCount = new HashMap<>();
     }
     //if a returning user has a cart saved
     public Cart(String userID, ArrayList<Item> ItemList) {
@@ -56,10 +56,13 @@ public class Cart {
         if (itemCount.containsKey(item.getName())) {
             int currentCount = itemCount.get(item.getName());
             if (currentCount <= quantity) {
+                item.returnToShelf(itemCount.get(item.getName()));
                 itemCount.remove(item.getName());
                 ItemList.remove(item);
+                System.out.println("Removed all of " + item.getName() + " from cart.");
             } else {
                 itemCount.put(item.getName(), currentCount - quantity);
+                item.returnToShelf(quantity);
             }
         }
     }
