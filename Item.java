@@ -18,6 +18,11 @@ public class Item {
         this.price = price;
     }
 
+    @Override 
+    public String toString() {
+        return name + " (" + brand + ") - $" + price + ", stock: " + stock;
+    }
+
     public void putOnSale(float percentOff) {
         this.percentOff = percentOff;
         if (percentOff < 0 || percentOff > 100) return;
@@ -31,7 +36,6 @@ public class Item {
             this.onsale = false; 
         }
     }
-
     public void returnToShelf(int amount){
         if (amount > 0){
             stock += amount;
@@ -42,7 +46,7 @@ public class Item {
             stock -= amount;
         }
     }
-
+    //getters and setters
     public void setPrice(float newPrice) {
         if (newPrice > 0) {
             price = newPrice;
@@ -50,22 +54,10 @@ public class Item {
             percentOff = 0;
         }
     }
-    public String getname(){
-        return name;
-    }
-
     public float getprice(){
         return price;
     }
-    @Override 
-    public String toString() {
-        return name + " (" + brand + ") - $" + price + ", stock: " + stock;
-    }
-
     public String getName() {
         return name;
-    }
-    public float getPrice() {
-        return price;
     }
 }
