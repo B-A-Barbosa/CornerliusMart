@@ -11,22 +11,6 @@ public class Clothing extends Item {
         this.size = size;
     }
 
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-    
     @Override
     public String toString() {
         return super.toString() + " | Colour: " + colour + " | Size: " + size;
