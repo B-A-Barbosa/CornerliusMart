@@ -37,6 +37,11 @@ public class Item {
             stock += amount;
         }
     }
+    public void takeOffShelf(int amount){
+        if (stock >= amount){
+            stock -= amount;
+        }
+    }
 
     public void setPrice(float newPrice) {
         if (newPrice > 0) {
