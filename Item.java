@@ -18,4 +18,42 @@ public class Item {
         this.stock = stock;
         this.price = price;
     }
+
+    public void putOnSale(float percentOff) {
+        if (percentOff < 0 || percentOff > 100) return;
+
+        price = price - (price * (percentOff / 100f));
+        this.onsale = true; 
+    }
+
+    public void returnToShelf(int amount){
+        if (amount > 0){
+            stock += amount;
+        }
+    }
+
+    public void setPrice(float newPrice) {
+        if (newPrice > 0) {
+            price = newPrice;
+            this.onsale = false;    
+        }
+    }
+    public String getname(){
+        return name;
+    }
+
+    public float getprice(){
+        return price;
+    }
+    @Override 
+    public String toString() {
+        return name + " (" + brand + ") - $" + price + ", stock: " + stock;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public float getPrice() {
+        return price;
+    }
 }
