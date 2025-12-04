@@ -1,7 +1,5 @@
-
 import java.util.ArrayList;
 
-//types of item, prepackaged, grocery, clothing, furniture, ...
 public class Item {
     protected String name;
     protected String desc;
@@ -43,7 +41,8 @@ public class Item {
     public void setPrice(float newPrice) {
         if (newPrice > 0) {
             price = newPrice;
-            this.onsale = false;    
+            this.onsale = false;
+            percentOff = 0;
         }
     }
     public String getname(){
