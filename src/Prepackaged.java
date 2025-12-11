@@ -1,6 +1,5 @@
-package src;
+//package src;
 //nutrition
-//
 
 public class Prepackaged extends Item {
     private String expiryDate;

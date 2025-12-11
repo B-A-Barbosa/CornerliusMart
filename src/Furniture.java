@@ -1,4 +1,4 @@
-package src;
+//package src;
 public class Furniture extends Item {
     private String material;
     private String colour;
