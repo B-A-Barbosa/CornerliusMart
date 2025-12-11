@@ -1,4 +1,3 @@
-//package src;
 /*Cart class
 Total price, # of items - saved or calculated when needed?
 hashmap or an arraylist of everything inside ?

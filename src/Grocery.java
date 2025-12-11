@@ -1,5 +1,3 @@
-//package src;
-
 public class Grocery extends Item {
     private float weightKg;     
     private String expiryDate;

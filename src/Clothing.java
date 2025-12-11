@@ -1,4 +1,3 @@
-//package src;
 //enum size
 //colour
 public class Clothing extends Item {
