@@ -13,6 +13,7 @@ public class Grocery extends Item {
     }
 
     // Customer buys a certain weight
+    //TODO ?????
     public boolean takeWeight(float amountKg) {
         if (amountKg <= 0 || amountKg > weightKg) return false;
         weightKg -= amountKg;
