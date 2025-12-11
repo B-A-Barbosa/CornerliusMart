@@ -1,3 +1,4 @@
+package src;
 /*Cart class
 Total price, # of items - saved or calculated when needed?
 hashmap or an arraylist of everything inside ?
@@ -17,10 +18,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
+    private String userID;
     private ArrayList<Item> ItemList;
     private HashMap<String, Integer> itemCount;
-    private String userID;
 
+    //TODO reevaluate constructors (are both needed?)
     //In the case that a new cart is created
     public Cart(String userID) {
         this.userID = userID;
@@ -28,10 +30,10 @@ public class Cart {
         itemCount = new HashMap<>();
     }
     //if a returning user has a cart saved
-    public Cart(String userID, ArrayList<Item> ItemList) {
+    public Cart(String userID, ArrayList<Item> ItemList, HashMap<String, Integer> itemCount) {
         this.userID = userID;
         this.ItemList = ItemList;
-        //TODO itemCount = new HashMap<String, Integer>();
+        this.itemCount = itemCount;
     }
 
     public float getTotalPrice() {
@@ -40,6 +42,15 @@ public class Cart {
             total += item.getPrice() * itemCount.get(item.getName());
         }
         return total;
+    }
+    public String getUserID() {
+        return userID;
+    }
+    public ArrayList<Item> getItemList() {
+        return ItemList;
+    }
+    public void setItemList(ArrayList<Item> ItemList) {
+        this.ItemList = ItemList;
     }
 
     //add the item to the arraylist, and then update the hashmap count
