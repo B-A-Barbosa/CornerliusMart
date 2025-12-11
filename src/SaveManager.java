@@ -1,4 +1,3 @@
-//package src;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileReader;
@@ -8,9 +7,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CartManager {
+public class SaveManager {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private static Map<String, Cart> userCarts = new HashMap<>();
+    //TODO private static final String CARTS_FILE = "carts.json";
+    private static ArrayList<Item> itemCatalog = new ArrayList<>();
+    private static Map<Item, Integer> inventory = new HashMap<>();
+
+    //TODO save / load inventory and item catalog methods also rethink the naming    
 
     public static void SaveCart(String userID, Cart cart) {
         userCarts.put(userID, cart);
