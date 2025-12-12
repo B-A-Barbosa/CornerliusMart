@@ -23,6 +23,7 @@ public class SaveManager {
     //and pretty printing (adds tabbing and spacing so that the file is human-readable)
     private static Gson gson = new GsonBuilder().registerTypeAdapterFactory(itemAdapterFactory).setPrettyPrinting().create();
     private static Map<String, Cart> userCarts = new HashMap<>();
+    private static Map<String, String> passwordMap = new HashMap<>();
     private static final String CARTS_FILE = "carts.json";
     private static final String INVENTORY_FILE = "inventory.json";
 
@@ -32,8 +33,14 @@ public class SaveManager {
         userCarts.put(userID, cart);
     }
 
-    public static Cart LoadCart(String userID) {
-        return userCarts.get(userID);
+    public static Cart LoadCart(String userID, String password) {
+        if (password.equals(passwordMap.get(userID))){
+            System.out.println("Login successful!");
+            return userCarts.get(userID);
+        } else {
+            System.out.println("Incorrect password.");
+            return null;
+        }
     }
 
     public static void saveCartsToFile() throws IOException{
@@ -51,6 +58,7 @@ public class SaveManager {
         try (FileReader reader = new FileReader(CARTS_FILE)) {
             Cart[] loadedCarts = gson.fromJson(reader, Cart[].class);
             for (Cart cart : loadedCarts) {
+                passwordMap.put(cart.getUserID(), cart.getPassword());
                 userCarts.put(cart.getUserID(), cart);
             }
         }

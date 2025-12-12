@@ -1,15 +1,8 @@
 [
   {
-    "userID": "bernardo123",
+    "userID": "ber",
+    "password": "123",
     "ItemList": [
-      {
-        "type": "Grocery",
-        "weightKg": 0.0,
-        "name": "Apple",
-        "stock": 0,
-        "price": 0.99,
-        "percentOff": 0.0
-      },
       {
         "type": "Furniture",
         "material": "Wood",
@@ -18,12 +11,11 @@
         "desc": "A comfy chair",
         "brand": "FurniCo",
         "stock": 10,
-        "price": 49.94001,
-        "percentOff": 0.1
+        "price": 49.99,
+        "percentOff": 0.0
       }
     ],
     "itemCount": {
-      "Apple": 5,
       "Chair": 4
     }
   }
