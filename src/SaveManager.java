@@ -1,7 +1,6 @@
-package src;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import src.util.RuntimeTypeAdapterFactory;
+import util.RuntimeTypeAdapterFactory;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;

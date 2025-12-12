@@ -1,4 +1,4 @@
-package src;
+
 public class Prepackaged extends Item {
     private String expiryDate;
 
