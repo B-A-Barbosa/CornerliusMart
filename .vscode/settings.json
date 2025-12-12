@@ -1,13 +1,4 @@
 {
-  // Use your JDK in Downloads (edit the path below to your actual folder)
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-17",
-      "path": "C:\\Users\\89368BAR\\Documents\\oracleJdk-21",
-      "default": true
-    }
-  ],
-
   // Tell VS Code where sources and output are
   "java.project.sourcePaths": ["src"],
   "java.project.outputPath": "bin",

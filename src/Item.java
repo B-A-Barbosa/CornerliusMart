@@ -1,14 +1,13 @@
+package src;
 import java.util.ArrayList;
 import java.util.Objects;
-public class Item {
+public abstract class Item {
     protected String name;
     protected String desc;
     protected String brand;   
     protected int stock;
-    protected String type;
     protected float price;
     protected float percentOff;
-    protected boolean onsale; 
     protected ArrayList<Object> list;
 
     //TODO explain the override methods
@@ -18,9 +17,8 @@ public class Item {
         if (this == obj) return true;
         if (!(obj instanceof Item)) return false;
         Item other = (Item) obj;
-        return this.name.equals(other.name) &&
-                this.brand.equals(other.brand) &&
-                this.desc.equals(other.desc);
+        return this.generateCode().equals(other.generateCode()) &&
+               this.desc.equals(other.desc);
     }
     @Override
     public int hashCode() {
@@ -31,6 +29,9 @@ public class Item {
     public String toString() {
         return name + " (" + brand + ") - $" + price + ", stock: " + stock;
     }
+
+    public abstract String generateCode();
+
     public Item(String name, String desc, String brand, float price, int stock) {
         this.name = name;
         this.desc = desc;
@@ -44,12 +45,10 @@ public class Item {
         if (percentOff < 0 || percentOff > 100) return;
 
         price = price - (price * (percentOff / 100f));
-        this.onsale = true; 
     }
     public void takeOffSale() {
-        if (this.onsale) {
+        if (percentOff > 0) {
             price = price / (1 - (percentOff / 100f));
-            this.onsale = false; 
         }
     }
     public void returnToShelf(int amount){
@@ -66,7 +65,6 @@ public class Item {
     public void setPrice(float newPrice) {
         if (newPrice > 0) {
             price = newPrice;
-            this.onsale = false;
             percentOff = 0;
         }
     }
