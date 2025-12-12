@@ -20,17 +20,20 @@ import java.util.HashMap;
 
 public class Cart {
     private String userID;
+    private String password;
     private ArrayList<Item> ItemList;
     private HashMap<String, Integer> itemCount;
 
     //TODO reevaluate constructors (are both needed?)
     //In the case that a new cart is created
-    public Cart(String userID) {
+    public Cart(String userID, String password) {
         this.userID = userID;
+        this.password = password;
         this.ItemList = new ArrayList<>();
         itemCount = new HashMap<>();
     }
     //if a returning user has a cart saved
+    //TODO needed?
     public Cart(String userID, ArrayList<Item> ItemList, HashMap<String, Integer> itemCount) {
         this.userID = userID;
         this.ItemList = ItemList;
@@ -46,6 +49,9 @@ public class Cart {
     }
     public String getUserID() {
         return userID;
+    }
+    public String getPassword() {
+        return password;
     }
     public ArrayList<Item> getItemList() {
         return ItemList;
