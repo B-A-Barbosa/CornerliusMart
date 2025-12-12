@@ -1,4 +1,3 @@
-package src;
 
 public class Other extends Item {
     public Other(String name, String desc, String brand,

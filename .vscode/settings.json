@@ -1,10 +1,15 @@
 {
-  // Tell VS Code where sources and output are
+  
+"java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "C:/Users/89368BAR/Documents/oracleJdk-21",
+      "default": true
+    }
+  ],
   "java.project.sourcePaths": ["src"],
   "java.project.outputPath": "bin",
-
-  // Automatically add JARs under lib/ to the classpath
   "java.project.referencedLibraries": [
     "lib/**/*.jar"
    ]
-  }
+}
