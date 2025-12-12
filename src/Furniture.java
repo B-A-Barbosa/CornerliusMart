@@ -1,15 +1,17 @@
+package src;
 public class Furniture extends Item {
     private String material;
     private String colour;
 
-    public Furniture(String name, String description, String brand,
+    public Furniture(String name, String desc, String brand,
                      float price, int stock, String material, String colour) {
-        super(name, description, brand, price, stock);
+        super(name, desc, brand, price, stock);
         this.material = material;
         this.colour = colour;
-        this.type = "Furniture";
     }
-
+    public String generateCode() {
+        return "FUR-" + getName().substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + material.toUpperCase();
+    }
     
     @Override
     public String toString() {

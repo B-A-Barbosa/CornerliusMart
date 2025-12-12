@@ -1,11 +1,14 @@
+package src;
 public class Prepackaged extends Item {
     private String expiryDate;
 
-    public Prepackaged(String name, String description, String brand,
+    public Prepackaged(String name, String desc, String brand,
                            float price, int stock, String expiryDate) {
-        super(name, description, brand, price, stock);
+        super(name, desc, brand, price, stock);
         this.expiryDate = expiryDate;
-        this.type = "Prepackaged";
+    }
+    public String generateCode() {
+        return "PRE-" + getName().substring(0,3).toUpperCase() + "-" + brand.toUpperCase();
     }
 
     @Override

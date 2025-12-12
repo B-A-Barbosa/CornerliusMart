@@ -1,13 +1,14 @@
+package src;
 public class Grocery extends Item {
     private float weightKg;     
-    private String expiryDate;
 
-    public Grocery(String name, String description, String brand,
+    public Grocery(String name, String desc, String brand,
                    float pricePerKg, float weightKg, String expiryDate) {
-        super(name, description, brand, pricePerKg, 1); 
+        super(name, desc, brand, pricePerKg, 1); 
         this.weightKg = weightKg;
-        this.expiryDate = expiryDate;
-        this.type = "Grocery";
+    }
+    public String generateCode() {
+        return "GRO-" + getName().substring(0,3).toUpperCase();
     }
 
     // Customer buys a certain weight
@@ -20,6 +21,6 @@ public class Grocery extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + " | Weight: " + weightKg + "kg | Expires: " + expiryDate;
+        return super.toString() + " | Weight: " + weightKg + "kg";
     }
 }
