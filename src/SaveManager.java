@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveManager {
+public abstract class SaveManager {
     //the base gson library cannot differentiate between subclasses when converting to/from json
     //this factory (added in RuntimeTypeAdapterFactory.java) tells gson how to handle the different subclasses of Item by adding a "type" field to the json
     private static final RuntimeTypeAdapterFactory<Item> itemAdapterFactory = RuntimeTypeAdapterFactory
@@ -25,14 +25,24 @@ public class SaveManager {
     private static Map<String, Cart> userCarts = new HashMap<>();
     private static Map<String, String> passwordMap = new HashMap<>();
     private static final String CARTS_FILE = "carts.json";
-    private static final String INVENTORY_FILE = "inventory.json";
+    private static final String STORE_FILE = "store.json";
 
-    //TODO save / load inventory and item catalog methods also rethink the naming    
+    //TODO save / load inventory and item catalog methods also rethink the naming
+    public static void SaveStore(Store store) throws IOException {
+        try (FileWriter writer = new FileWriter(STORE_FILE)) {
+            gson.toJson(store, writer);
+        }
+    }
+    public static Store LoadStore() throws IOException {
+        try (FileReader reader = new FileReader(STORE_FILE)) {
+            Store store = gson.fromJson(reader, Store.class);
+            return store;
+        }
+    }
 
     public static void SaveCart(String userID, Cart cart) {
         userCarts.put(userID, cart);
     }
-
     public static Cart LoadCart(String userID, String password) {
         if (password.equals(passwordMap.get(userID))){
             System.out.println("Login successful!");
@@ -46,11 +56,10 @@ public class SaveManager {
     public static void saveCartsToFile() throws IOException{
         //create a new gson object with pretty printing (adds tabing and new lines for readability)
         //creates a new file writer to write to carts.json
-        try (FileWriter writer = new FileWriter("carts2.json")) {
+        try (FileWriter writer = new FileWriter(CARTS_FILE)) {
             //go through each cart in the hasmap and write it to the file and to console
             ArrayList<Cart> cartsToSave = new ArrayList<>(userCarts.values());
-            gson.toJson(cartsToSave, writer);
-            
+            gson.toJson(cartsToSave, writer); 
         }
     }
     public static void loadCartsFromFile() throws IOException{

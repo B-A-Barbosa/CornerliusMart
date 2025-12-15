@@ -9,8 +9,9 @@ public class Furniture extends Item {
         this.material = material;
         this.colour = colour;
     }
+    @Override
     public String generateCode() {
-        return "FUR-" + getName().substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + material.toUpperCase();
+        return "FUR-" + name.substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + material.toUpperCase();
     }
     
     @Override

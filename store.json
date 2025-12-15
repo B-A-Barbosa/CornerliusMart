@@ -1,0 +1,52 @@
+{
+  "ItemCatalog": [
+    {
+      "type": "Grocery",
+      "weightKg": 1.5,
+      "name": "Apple",
+      "desc": "Fresh red apple",
+      "brand": "FarmFresh",
+      "stock": 1,
+      "price": 3.99,
+      "percentOff": 0.0
+    },
+    {
+      "type": "Clothing",
+      "colour": "Blue",
+      "size": "M",
+      "name": "T-Shirt",
+      "desc": "Cotton t-shirt",
+      "brand": "ClothCo",
+      "stock": 100,
+      "price": 19.99,
+      "percentOff": 0.0
+    },
+    {
+      "type": "Prepackaged",
+      "expiryDate": "12/12/12",
+      "name": "Chips",
+      "desc": "Potato chips",
+      "brand": "SnackCorp",
+      "stock": 200,
+      "price": 2.49,
+      "percentOff": 0.0
+    },
+    {
+      "type": "Furniture",
+      "material": "Leather",
+      "colour": "Black",
+      "name": "Sofa",
+      "desc": "Comfortable sofa",
+      "brand": "FurniCo",
+      "stock": 5,
+      "price": 499.99,
+      "percentOff": 0.0
+    }
+  ],
+  "inventory": {
+    "PRE-CHI-SNACKCORP": 200,
+    "GRO-APPLE-FRE": 50,
+    "FUR-SOF-BLACK-LEATHER": 5,
+    "CLO-T-S-BLUE-M": 100
+  }
+}
