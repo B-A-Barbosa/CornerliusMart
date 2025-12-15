@@ -7,8 +7,9 @@ public class Prepackaged extends Item {
         super(name, desc, brand, price, stock);
         this.expiryDate = expiryDate;
     }
+    @Override
     public String generateCode() {
-        return "PRE-" + getName().substring(0,3).toUpperCase() + "-" + brand.toUpperCase();
+        return "PRE-" + name.substring(0,3).toUpperCase() + "-" + brand.toUpperCase();
     }
 
     @Override

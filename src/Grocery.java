@@ -7,8 +7,9 @@ public class Grocery extends Item {
         super(name, desc, brand, pricePerKg, 1); 
         this.weightKg = weightKg;
     }
+    @Override
     public String generateCode() {
-        return "GRO-" + getName().substring(0,3).toUpperCase();
+        return "GRO-" + name.toUpperCase() + "-" + desc.substring(0, 3).toUpperCase();
     }
 
     // Customer buys a certain weight

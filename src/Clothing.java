@@ -1,7 +1,8 @@
-
 enum Size {
     XS, S, M, L, XL, XXL
 }
+
+
 public class Clothing extends Item {
     private String colour;
     private Size size;
@@ -12,8 +13,9 @@ public class Clothing extends Item {
         this.colour = colour;
         this.size = size;
     }
+    @Override
     public String generateCode() {
-        return "CLO-" + getName().substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + size.name();
+        return "CLO-" + name.substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + size.name();
     }
 
     @Override
