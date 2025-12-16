@@ -3,7 +3,7 @@
 "java.configuration.runtimes": [
     {
       "name": "JavaSE-21",
-      "path": "C:/Users/89368BAR/Documents/oracleJdk-21",
+      "path": "C:/Users/89368BAR/Documents/oracleJdk-25",
       "default": true
     }
   ],

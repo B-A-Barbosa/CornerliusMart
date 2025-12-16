@@ -1,13 +1,9 @@
-import java.util.Scanner;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.util.Properties;
+import java.util.Scanner;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 
 public class Main {
@@ -191,12 +187,6 @@ public class Main {
         store.addItemToCatalog(new Furniture("Sofa", "Comfortable sofa", "FurniCo", 499.99f, 5, "Leather", "Black"), 5);
         SaveManager.SaveStore(store);
 */
-
-
-
-
-
-
 /*
         SaveManager.loadCartsFromFile();
         System.out.println("Welcome to Cornerlius Mart!");

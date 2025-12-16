@@ -1,5 +1,3 @@
-
-
 /*Cart class
 Total price, # of items - saved or calculated when needed?
 hashmap or an arraylist of everything inside ?
@@ -21,16 +19,22 @@ import java.util.HashMap;
 public class Cart {
     private String userID;
     private String password;
+    private Store store;
+    //TODO more efficient to do hashmap of items and counts only?
     private ArrayList<Item> ItemList;
     private HashMap<String, Integer> itemCount;
 
     //TODO reevaluate constructors (are both needed?)
     //In the case that a new cart is created
-    public Cart(String userID, String password) {
+    public Cart(Store store, String userID, String password) {
         this.userID = userID;
         this.password = password;
+        this.store = store;
         this.ItemList = new ArrayList<>();
         itemCount = new HashMap<>();
+    }
+    public void SetStore (Store store) {
+        this.store = store;
     }
     //if a returning user has a cart saved
     //TODO needed?
@@ -61,27 +65,32 @@ public class Cart {
     }
 
     //add the item to the arraylist, and then update the hashmap count
-    public void addToCart(Item item, int quantity) {
-        if (!ItemList.contains(item)){
-            ItemList.add(item);
+    //TODO did we use the boolean?
+    public boolean addToCart(Item item, int quantity) {
+        if (store.removeItemFromCatalog(item, quantity)) {
+            if (!ItemList.contains(item)){
+                ItemList.add(item);
+            }
+            itemCount.put(item.getName(), itemCount.getOrDefault(item.getName(), 0) + quantity);
+            return true;
         }
-        itemCount.put(item.getName(), itemCount.getOrDefault(item.getName(), 0) + quantity);
+        return false;
     }
     //if the item exists in the hashmap then get the number of items.
     //if there are less or equal items than to be removed, remove the item from the cart
     //else just decrease the number of items by quantity
-    public void removeFromCart(Item item, int quantity) {
-        if (itemCount.containsKey(item.getName())) {
-            int currentCount = itemCount.get(item.getName());
-            if (currentCount <= quantity) {
-                item.returnToShelf(itemCount.get(item.getName()));
-                itemCount.remove(item.getName());
-                ItemList.remove(item);
-                System.out.println("Removed all of " + item.getName() + " from cart.");
-            } else {
-                itemCount.put(item.getName(), currentCount - quantity);
-                item.returnToShelf(quantity);
+    //TODO did we use the boolean?
+    //TODO change hashmap form name to code !!!!!!!!!!!
+    //normalize quantity and stock name between cart and store
+    public boolean removeFromCart(Item item, int quantity) {
+        if (ItemList.contains(item)){
+            int currentStock = itemCount.get(item.getName());
+            if (currentStock >= quantity) {
+                itemCount.put(item.getName(), currentStock - quantity);
+                store.addItemToCatalog(item, quantity);
+                return true;
             }
         }
+        return false;
     }
 }
