@@ -2,7 +2,6 @@ enum Size {
     XS, S, M, L, XL, XXL
 }
 
-
 public class Clothing extends Item {
     private String colour;
     private Size size;

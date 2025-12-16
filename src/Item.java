@@ -4,14 +4,13 @@ import java.util.Objects;
 public abstract class Item {
     protected String name;
     protected String desc;
-    protected String brand;   
+    protected String brand;
     protected int stock;
     protected float price;
     protected float percentOff;
     protected ArrayList<Object> list;
 
     //TODO explain the override methods
-    //derive a number from these fields to create item id?
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
