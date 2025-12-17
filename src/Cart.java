@@ -19,10 +19,11 @@ import java.util.HashMap;
 public class Cart {
     private String userID;
     private String password;
-    private Store store;
-    //TODO more efficient to do hashmap of items and counts only?
+    //Transient so it is not saved when serializing, there is already a store save file so saving it in the cart is redundant
+    private transient Store store;
+    //Item list is only for saving purposes, as gson cannot serialize hashmaps properly, otherwise i would have used a Hashmap<Item, Integer>
     private ArrayList<Item> ItemList;
-    private HashMap<String, Integer> itemCount;
+    private HashMap<String, Integer> ItemCount; //Key: item code, Value: number of items in cart
 
     //TODO reevaluate constructors (are both needed?)
     //In the case that a new cart is created
@@ -31,23 +32,23 @@ public class Cart {
         this.password = password;
         this.store = store;
         this.ItemList = new ArrayList<>();
-        itemCount = new HashMap<>();
+        ItemCount = new HashMap<>();
     }
     public void SetStore (Store store) {
         this.store = store;
     }
     //if a returning user has a cart saved
     //TODO needed?
-    public Cart(String userID, ArrayList<Item> ItemList, HashMap<String, Integer> itemCount) {
+    public Cart(String userID, ArrayList<Item> ItemList, HashMap<String, Integer> ItemCount) {
         this.userID = userID;
         this.ItemList = ItemList;
-        this.itemCount = itemCount;
+        this.ItemCount = ItemCount;
     }
 
     public float getTotalPrice() {
         float total = 0;
         for (Item item : ItemList) {
-            total += item.getPrice() * itemCount.get(item.getName());
+            total += item.getPrice() * ItemCount.get(item.getName());
         }
         return total;
     }
@@ -71,7 +72,7 @@ public class Cart {
             if (!ItemList.contains(item)){
                 ItemList.add(item);
             }
-            itemCount.put(item.getName(), itemCount.getOrDefault(item.getName(), 0) + quantity);
+            ItemCount.put(item.generateCode(), ItemCount.getOrDefault(item.generateCode(), 0) + quantity);
             return true;
         }
         return false;
@@ -84,9 +85,9 @@ public class Cart {
     //normalize quantity and stock name between cart and store
     public boolean removeFromCart(Item item, int quantity) {
         if (ItemList.contains(item)){
-            int currentStock = itemCount.get(item.getName());
+            int currentStock = ItemCount.get(item.generateCode());
             if (currentStock >= quantity) {
-                itemCount.put(item.getName(), currentStock - quantity);
+                ItemCount.put(item.generateCode(), currentStock - quantity);
                 store.addItemToCatalog(item, quantity);
                 return true;
             }

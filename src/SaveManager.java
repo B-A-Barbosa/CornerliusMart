@@ -24,8 +24,8 @@ public abstract class SaveManager {
     private static Gson gson = new GsonBuilder().registerTypeAdapterFactory(itemAdapterFactory).setPrettyPrinting().create();
     private static Map<String, Cart> userCarts = new HashMap<>();
     private static Map<String, String> passwordMap = new HashMap<>();
-    private static final String CARTS_FILE = "carts.json";
-    private static final String STORE_FILE = "store.json";
+    private static final String CARTS_FILE = "SaveFiles/carts.json";
+    private static final String STORE_FILE = "SaveFiles/store.json";
 
     //TODO throws ioexception annoying
     public static void SaveStore(Store store) throws IOException {
@@ -40,8 +40,8 @@ public abstract class SaveManager {
         }
     }
 
-    public static void SaveCart(String userID, Cart cart) {
-        userCarts.put(userID, cart);
+    public static void SaveCart(Cart cart) {
+        userCarts.put(cart.getUserID(), cart);
     }
     public static Cart LoadCart(String userID, String password) {
         if (password.equals(passwordMap.get(userID))){

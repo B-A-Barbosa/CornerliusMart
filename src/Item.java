@@ -5,7 +5,6 @@ public abstract class Item {
     protected String name;
     protected String desc;
     protected String brand;
-    protected int stock;
     protected float price;
     protected float percentOff;
     protected ArrayList<Object> list;
@@ -26,16 +25,15 @@ public abstract class Item {
 
     @Override 
     public String toString() {
-        return name + " (" + brand + ") - $" + price + ", stock: " + stock;
+        return name + " (" + brand + ") - $" + price;
     }
 
     public abstract String generateCode();
 
-    public Item(String name, String desc, String brand, float price, int stock) {
+    public Item(String name, String desc, String brand, float price) {
         this.name = name;
         this.desc = desc;
         this.brand = brand;     
-        this.stock = stock;
         this.price = price;
     }
 
@@ -50,17 +48,7 @@ public abstract class Item {
             price = price / (1 - (percentOff / 100f));
         }
     }
-    public void returnToShelf(int amount){
-        if (amount > 0){
-            stock += amount;
-        }
-    }
-    public void takeOffShelf(int amount){
-        if (stock >= amount){
-            stock -= amount;
-        }
-    }
-    //getters and setters
+
     public void setPrice(float newPrice) {
         if (newPrice > 0) {
             price = newPrice;
