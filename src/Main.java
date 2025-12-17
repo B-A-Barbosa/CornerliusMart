@@ -12,9 +12,6 @@ public class Main {
     private static final String LOGIN_BG = "MartPass.png";
     private static final String SCROLL_BG = "MartB.png";
 
-
-
-
     //image loaderrrrrrrrrrrrrrrrrrrrrrrr
         private static BufferedImage loadImage(String fileName) {
         try {
@@ -176,18 +173,28 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Store store = SaveManager.LoadStore();
-        SaveManager.SaveStore(store);
-
-
-/*
-        Size enu = Size.M;
-        store.addItemToCatalog(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, 1.5f, "10/10/10"), 50);
-        store.addItemToCatalog(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, 100, "Blue", enu), 100);
-        store.addItemToCatalog(new Prepackaged("Chips", "Potato chips", "SnackCorp", 2.49f, 200, "12/12/12"), 200);
-        store.addItemToCatalog(new Furniture("Sofa", "Comfortable sofa", "FurniCo", 499.99f, 5, "Leather", "Black"), 5);
+        if (store == null) {
+            store = new Store();
+        }
+        System.out.println(store.getItemCatalog().size() + " items loaded in store catalog.");
+/* Testing adding items to cart and them taking away from store.
+        Cart cart = new Cart(store, "ber", "123");
+        cart.addToCart(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, "Blue", Size.M), 2);
+        cart.addToCart(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, "10/10/10"), 5);
+        cart.addToCart(store.getItemCatalog().get(0), 5);
+        SaveManager.SaveCart(cart);
+        SaveManager.SaveCartsToFile();
         SaveManager.SaveStore(store);
 */
-/*
+/* Creates new test store objects
+        Size enu = Size.M;
+        store.addItemToCatalog(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, "10/10/10"), 50);
+        store.addItemToCatalog(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, "Blue", enu), 100);
+        store.addItemToCatalog(new Prepackaged("Chips", "Potato chips", "SnackCorp", 2.49f, "12/12/12"), 200);
+        store.addItemToCatalog(new Furniture("Sofa", "Comfortable sofa", "FurniCo", 499.99f, "Leather", "Black"), 5);
+        SaveManager.SaveStore(store);
+*/
+/* Creating a new cart and adding items to it
         SaveManager.loadCartsFromFile();
         System.out.println("Welcome to Cornerlius Mart!");
         System.out.println("user: ");
@@ -204,7 +211,7 @@ public class Main {
         SaveManager.SaveCart(user, userCart);
         SaveManager.saveCartsToFile();
 */
-        /*
+/* Testing cart save and load
         SaveManager.loadCartsFromFile();
         Cart cart = SaveManager.LoadCart("bernardo123", "123");
         cart.addToCart(chair, 2);
@@ -213,7 +220,7 @@ public class Main {
         System.out.println("Total price in cart: $" + cart.getTotalPrice());
         SaveManager.SaveCart("bernardo123", cart);
         SaveManager.saveCartsToFile();
-        */
+*/
        
         SwingUtilities.invokeLater(() -> {
             StartFrame frame = new StartFrame();

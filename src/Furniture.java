@@ -1,11 +1,10 @@
-
 public class Furniture extends Item {
     private String material;
     private String colour;
 
     public Furniture(String name, String desc, String brand,
-                     float price, int stock, String material, String colour) {
-        super(name, desc, brand, price, stock);
+                     float price, String material, String colour) {
+        super(name, desc, brand, price);
         this.material = material;
         this.colour = colour;
     }
