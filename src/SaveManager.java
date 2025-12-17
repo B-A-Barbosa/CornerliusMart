@@ -1,6 +1,8 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import util.RuntimeTypeAdapterFactory;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,15 +30,24 @@ public abstract class SaveManager {
     private static final String STORE_FILE = "SaveFiles/store.json";
 
     //TODO throws ioexception annoying
-    public static void SaveStore(Store store) throws IOException {
+    public static void SaveStore(Store store){
         try (FileWriter writer = new FileWriter(STORE_FILE)) {
             gson.toJson(store, writer);
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public static Store LoadStore() throws IOException {
+    public static Store LoadStore() {
+        System.out.println("Looking for file at: " + new File(STORE_FILE).getAbsolutePath());
+
         try (FileReader reader = new FileReader(STORE_FILE)) {
             Store store = gson.fromJson(reader, Store.class);
             return store;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -53,7 +64,7 @@ public abstract class SaveManager {
         }
     }
 
-    public static void SaveCartsToFile() throws IOException{
+    public static void SaveCartsToFile(){
         //create a new gson object with pretty printing (adds tabing and new lines for readability)
         //creates a new file writer to write to carts.json
         try (FileWriter writer = new FileWriter(CARTS_FILE)) {
@@ -61,8 +72,11 @@ public abstract class SaveManager {
             ArrayList<Cart> cartsToSave = new ArrayList<>(userCarts.values());
             gson.toJson(cartsToSave, writer); 
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public static void LoadCartsFromFile() throws IOException{
+    public static void LoadCartsFromFile() {
         //TODO error when file is empty (error when file doesnt exist???)
         try (FileReader reader = new FileReader(CARTS_FILE)) {
             Cart[] loadedCarts = gson.fromJson(reader, Cart[].class);
@@ -71,5 +85,7 @@ public abstract class SaveManager {
                 userCarts.put(cart.getUserID(), cart);
             }
         }
+        catch (IOException e) {
+            e.printStackTrace();
     }
 }

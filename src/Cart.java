@@ -37,12 +37,12 @@ public class Cart {
     public void SetStore (Store store) {
         this.store = store;
     }
-    //if a returning user has a cart saved
-    //TODO needed?
-    public Cart(String userID, ArrayList<Item> ItemList, HashMap<String, Integer> ItemCount) {
+    public Cart(String userID, String password) {
         this.userID = userID;
-        this.ItemList = ItemList;
-        this.ItemCount = ItemCount;
+        this.password = password;
+        this.store = null;
+        this.ItemList = new ArrayList<>();
+        ItemCount = new HashMap<>();
     }
 
     public float getTotalPrice() {
