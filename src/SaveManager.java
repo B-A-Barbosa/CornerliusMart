@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class SaveManager {
+public class SaveManager {
     //the base gson library cannot differentiate between subclasses when converting to/from json
     //this factory (added in RuntimeTypeAdapterFactory.java) tells gson how to handle the different subclasses of Item by adding a "type" field to the json
     private static final RuntimeTypeAdapterFactory<Item> itemAdapterFactory = RuntimeTypeAdapterFactory
@@ -87,5 +87,6 @@ public abstract class SaveManager {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
     }
 }
