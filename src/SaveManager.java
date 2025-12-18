@@ -24,10 +24,10 @@ public abstract class SaveManager {
     private static Gson gson = new GsonBuilder().registerTypeAdapterFactory(itemAdapterFactory).setPrettyPrinting().create();
     private static Map<String, Cart> userCarts = new HashMap<>();
     private static Map<String, String> passwordMap = new HashMap<>();
-    private static final String CARTS_FILE = "carts.json";
-    private static final String STORE_FILE = "store.json";
+    private static final String CARTS_FILE = "SaveFiles/carts.json";
+    private static final String STORE_FILE = "SaveFiles/store.json";
 
-    //TODO save / load inventory and item catalog methods also rethink the naming
+    //TODO throws ioexception annoying
     public static void SaveStore(Store store) throws IOException {
         try (FileWriter writer = new FileWriter(STORE_FILE)) {
             gson.toJson(store, writer);
@@ -40,8 +40,8 @@ public abstract class SaveManager {
         }
     }
 
-    public static void SaveCart(String userID, Cart cart) {
-        userCarts.put(userID, cart);
+    public static void SaveCart(Cart cart) {
+        userCarts.put(cart.getUserID(), cart);
     }
     public static Cart LoadCart(String userID, String password) {
         if (password.equals(passwordMap.get(userID))){
@@ -53,7 +53,7 @@ public abstract class SaveManager {
         }
     }
 
-    public static void saveCartsToFile() throws IOException{
+    public static void SaveCartsToFile() throws IOException{
         //create a new gson object with pretty printing (adds tabing and new lines for readability)
         //creates a new file writer to write to carts.json
         try (FileWriter writer = new FileWriter(CARTS_FILE)) {
@@ -62,7 +62,7 @@ public abstract class SaveManager {
             gson.toJson(cartsToSave, writer); 
         }
     }
-    public static void loadCartsFromFile() throws IOException{
+    public static void LoadCartsFromFile() throws IOException{
         //TODO error when file is empty (error when file doesnt exist???)
         try (FileReader reader = new FileReader(CARTS_FILE)) {
             Cart[] loadedCarts = gson.fromJson(reader, Cart[].class);

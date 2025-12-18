@@ -2,14 +2,13 @@ enum Size {
     XS, S, M, L, XL, XXL
 }
 
-
 public class Clothing extends Item {
     private String colour;
     private Size size;
 
     public Clothing(String name, String desc, String brand,
-                    float price, int stock, String colour, Size size) {                
-        super(name, desc, brand, price, stock);
+                    float price, String colour, Size size) {                
+        super(name, desc, brand, price);
         this.colour = colour;
         this.size = size;
     }
