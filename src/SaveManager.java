@@ -1,8 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import util.RuntimeTypeAdapterFactory;
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaveManager {
+public abstract class SaveManager {
     //the base gson library cannot differentiate between subclasses when converting to/from json
     //this factory (added in RuntimeTypeAdapterFactory.java) tells gson how to handle the different subclasses of Item by adding a "type" field to the json
     private static final RuntimeTypeAdapterFactory<Item> itemAdapterFactory = RuntimeTypeAdapterFactory
@@ -30,7 +28,7 @@ public class SaveManager {
     private static final String STORE_FILE = "SaveFiles/store.json";
 
     //TODO throws ioexception annoying
-    public static void SaveStore(Store store){
+    public static void SaveStore(Store store) {
         try (FileWriter writer = new FileWriter(STORE_FILE)) {
             gson.toJson(store, writer);
         }
@@ -39,8 +37,6 @@ public class SaveManager {
         }
     }
     public static Store LoadStore() {
-        System.out.println("Looking for file at: " + new File(STORE_FILE).getAbsolutePath());
-
         try (FileReader reader = new FileReader(STORE_FILE)) {
             Store store = gson.fromJson(reader, Store.class);
             return store;
@@ -64,7 +60,7 @@ public class SaveManager {
         }
     }
 
-    public static void SaveCartsToFile(){
+    public static void SaveCartsToFile() {
         //create a new gson object with pretty printing (adds tabing and new lines for readability)
         //creates a new file writer to write to carts.json
         try (FileWriter writer = new FileWriter(CARTS_FILE)) {
