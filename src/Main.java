@@ -1,31 +1,25 @@
-
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Properties;
 import javax.imageio.ImageIO;
+
 
 public class Main {
 
     static Scanner scan = new Scanner(System.in);
+    private static final String LOGIN_BG = "MartPass.png";
+    private static final String SCROLL_BG = "MartB.png";
 
-    // Background images
-    private static final String LOGIN_BG = "MartPass.png"; // login screen
-    private static final String SCROLL_BG = "MartB.png";   // next screen (scrollable)
 
-    // Optional: global session references if you want them accessible elsewhere
-    public static String sessionUser = null;
-    public static String sessionPassword = null;
-    public static Cart sessionCart = null;
 
-    // ----------------------------
-    // Image loader
-    // ----------------------------
-    private static BufferedImage loadImage(String fileName) {
+
+    //image loaderrrrrrrrrrrrrrrrrrrrrrrr
+        private static BufferedImage loadImage(String fileName) {
         try {
             File f = new File(fileName);
             if (!f.exists()) {
@@ -306,7 +300,51 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
         Store store = SaveManager.LoadStore();
-        
+        SaveManager.SaveStore(store);
+
+
+/*
+        Size enu = Size.M;
+        store.addItemToCatalog(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, 1.5f, "10/10/10"), 50);
+        store.addItemToCatalog(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, 100, "Blue", enu), 100);
+        store.addItemToCatalog(new Prepackaged("Chips", "Potato chips", "SnackCorp", 2.49f, 200, "12/12/12"), 200);
+        store.addItemToCatalog(new Furniture("Sofa", "Comfortable sofa", "FurniCo", 499.99f, 5, "Leather", "Black"), 5);
+        SaveManager.SaveStore(store);
+*/
+
+
+
+
+
+
+/*
+        SaveManager.loadCartsFromFile();
+        System.out.println("Welcome to Cornerlius Mart!");
+        System.out.println("user: ");
+        String user = scan.nextLine();
+        System.out.println("password: ");
+        String password = scan.nextLine();
+        //Cart userCart = new Cart(user, password);
+        Cart userCart = SaveManager.LoadCart(user, password);
+        Furniture chair = new Furniture("Chair", "A comfy chair", "FurniCo", 49.99f, 10, "Wood", "Brown");
+        userCart.addToCart(chair, 2);
+        System.out.println("Total price in cart: $" + userCart.getTotalPrice());
+
+
+        SaveManager.SaveCart(user, userCart);
+        SaveManager.saveCartsToFile();
+*/
+        /*
+        SaveManager.loadCartsFromFile();
+        Cart cart = SaveManager.LoadCart("bernardo123", "123");
+        cart.addToCart(chair, 2);
+        System.out.println("TSotal price in cart: $" + cart.getTotalPrice());
+        chair.putOnSale(0.10f); // 10% off
+        System.out.println("Total price in cart: $" + cart.getTotalPrice());
+        SaveManager.SaveCart("bernardo123", cart);
+        SaveManager.saveCartsToFile();
+        */
+       
         SwingUtilities.invokeLater(() -> {
             StartFrame frame = new StartFrame(store);
             frame.setVisible(true);

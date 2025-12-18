@@ -3,8 +3,8 @@ public class Prepackaged extends Item {
     private String expiryDate;
 
     public Prepackaged(String name, String desc, String brand,
-                           float price, int stock, String expiryDate) {
-        super(name, desc, brand, price, stock);
+                           float price, String expiryDate) {
+        super(name, desc, brand, price);
         this.expiryDate = expiryDate;
     }
     @Override
@@ -14,6 +14,6 @@ public class Prepackaged extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + " | Expires: " + expiryDate;
+        return super.toString() + " | Expiry Date: " + expiryDate;
     }
 }

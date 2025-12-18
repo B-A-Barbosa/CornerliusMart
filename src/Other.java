@@ -1,8 +1,7 @@
-
 public class Other extends Item {
     public Other(String name, String desc, String brand,
-                 float price, int stock) {
-        super(name, desc, brand, price, stock);
+                 float price) {
+        super(name, desc, brand, price);
     }
     @Override
     public String generateCode() {
