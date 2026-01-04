@@ -27,7 +27,7 @@ public abstract class SaveManager {
     private static final String CARTS_FILE = "SaveFiles/carts.json";
     private static final String STORE_FILE = "SaveFiles/store.json";
 
-    //TODO throws ioexception annoying
+    //save and load store methods
     public static void SaveStore(Store store) {
         try (FileWriter writer = new FileWriter(STORE_FILE)) {
             gson.toJson(store, writer);
@@ -46,7 +46,7 @@ public abstract class SaveManager {
             return null;
         }
     }
-
+    //save cart to hashmap and load cart from hashmap using userID and password
     public static void SaveCart(Cart cart) {
         userCarts.put(cart.getUserID(), cart);
     }
@@ -55,13 +55,17 @@ public abstract class SaveManager {
             System.out.println("Login successful!");
             return userCarts.get(userID);
         } else {
-            System.out.println("Incorrect password.");
+            System.out.println("Incorrect password or username.");
             return null;
         }
     }
 
+    //saves every cart in the hashmap to the carts.json file
     public static void SaveCartsToFile() {
-        //create a new gson object with pretty printing (adds tabing and new lines for readability)
+        if (userCarts.isEmpty()) {
+            System.out.println("No carts to save.");
+            return;
+        }
         //creates a new file writer to write to carts.json
         try (FileWriter writer = new FileWriter(CARTS_FILE)) {
             //go through each cart in the hasmap and write it to the file and to console
@@ -72,10 +76,16 @@ public abstract class SaveManager {
             e.printStackTrace();
         }
     }
+    //loads every cart from the carts.json file into the hashmap
     public static void LoadCartsFromFile() {
         //TODO error when file is empty (error when file doesnt exist???)
         try (FileReader reader = new FileReader(CARTS_FILE)) {
             Cart[] loadedCarts = gson.fromJson(reader, Cart[].class);
+            //if the file is empty or no carts were found, return
+            if (loadedCarts == null) {
+                System.out.println("No carts found in file.");
+                return;
+            }
             for (Cart cart : loadedCarts) {
                 passwordMap.put(cart.getUserID(), cart.getPassword());
                 userCarts.put(cart.getUserID(), cart);
