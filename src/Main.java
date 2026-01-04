@@ -1,63 +1,90 @@
 public class Main {
-    public static void main(String[] args){
+    public static void addItemsLoop(Store store) {
+        while (true) {
+            // use InputManager.ChooseOption for the main menu
+            String choice = InputManager.ChooseOption(new String[]{
+                    "Add Clothing",
+                    "Add Furniture",
+                    "Add Grocery",
+                    "Add Prepackaged",
+                    "Add Other",
+                    "Done"
+            });
+
+            if (choice.equalsIgnoreCase("Done")) {
+                System.out.println("Starting Program");
+                break;
+            }
+
+            //base fields for all items
+            System.out.print("Name: ");
+            String name = InputManager.scan.nextLine();
+
+            System.out.print("Description: ");
+            String desc = InputManager.scan.nextLine();
+
+            System.out.print("Brand: ");
+            String brand = InputManager.scan.nextLine();
+
+            float price = InputManager.getFloat("Price: ");
+            int stock = InputManager.getInt("Stock quantity: ");
+
+            //creating the item based on the type chosen
+            Item item = null;
+            switch (choice) {
+                //if type is clothing or furniture, ask extra questions
+                case "Add Clothing":
+                    System.out.print("Color: ");
+                    String color = InputManager.scan.nextLine();
+
+                    //sanitize size input
+                    String size = InputManager.ChooseOption(new String[]{
+                            "XS", "S", "M", "L", "XL", "XXL"
+                    });
+
+                    item = new Clothing(name, desc, brand, price, color, size);
+                    break;
+                case "Add Furniture":
+                    System.out.print("Material: ");
+                    String material = InputManager.scan.nextLine();
+
+                    System.out.print("Color: ");
+                    String fcolor = InputManager.scan.nextLine();
+
+                    item = new Furniture(name, desc, brand, price, material, fcolor);
+                    break;
+                case "Add Grocery":
+                    item = new Grocery(name, desc, brand, price);
+                    break;
+                case "Add Prepackaged":
+                    item = new Prepackaged(name, desc, brand, price);
+                    break;
+                case "Add Other":
+                    item = new Other(name, desc, brand, price);
+                    break;
+
+                default:
+                    System.out.println("Unexpected choice, skipping item.");
+                    continue;
+            }
+            store.addItemToCatalog(item, stock);
+            System.out.println("Item added successfully!");
+        }
+    }
+    public static void main(String[] args) {
+        //load store and carts from file and make new store if none exists
         Store store = SaveManager.LoadStore();
         SaveManager.LoadCartsFromFile();
         if (store == null) {
             store = new Store();
         }
-        System.out.println("Welcome to Cornerlius Mart!");
-        Cart cart = InputManager.Login();
-        cart.SetStore(store);
-        SaveManager.SaveCart(cart);
-        
+        //allow adding items before launching login frame
+        addItemsLoop(store);
+
+        //save store after adding items
+        SaveManager.SaveStore(store);
+
+        //launch login frame
+        new LoginFrame(store);
     }
-    
-
 }
-
-
-
-/* Testing adding items to cart and them taking away from store.
-        Cart cart = new Cart(store, "ber", "123");
-        cart.addToCart(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, "Blue", Size.M), 2);
-        cart.addToCart(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, "10/10/10"), 5);
-        cart.addToCart(store.getItemCatalog().get(0), 5);
-        SaveManager.SaveCart(cart);
-        SaveManager.SaveCartsToFile();
-        SaveManager.SaveStore(store);
-*/
-/* Creates new test store objects
-        Size enu = Size.M;
-        store.addItemToCatalog(new Grocery("Apple", "Fresh red apple", "FarmFresh", 3.99f, "10/10/10"), 50);
-        store.addItemToCatalog(new Clothing("T-Shirt", "Cotton t-shirt", "ClothCo", 19.99f, "Blue", enu), 100);
-        store.addItemToCatalog(new Prepackaged("Chips", "Potato chips", "SnackCorp", 2.49f, "12/12/12"), 200);
-        store.addItemToCatalog(new Furniture("Sofa", "Comfortable sofa", "FurniCo", 499.99f, "Leather", "Black"), 5);
-        SaveManager.SaveStore(store);
-*/
-/* Creating a new cart and adding items to it
-        SaveManager.loadCartsFromFile();
-        System.out.println("Welcome to Cornerlius Mart!");
-        System.out.println("user: ");
-        String user = scan.nextLine();
-        System.out.println("password: ");
-        String password = scan.nextLine();
-        //Cart userCart = new Cart(user, password);
-        Cart userCart = SaveManager.LoadCart(user, password);
-        Furniture chair = new Furniture("Chair", "A comfy chair", "FurniCo", 49.99f, 10, "Wood", "Brown");
-        userCart.addToCart(chair, 2);
-        System.out.println("Total price in cart: $" + userCart.getTotalPrice());
-
-
-        SaveManager.SaveCart(user, userCart);
-        SaveManager.saveCartsToFile();
-*/
-/* Testing cart save and load
-        SaveManager.loadCartsFromFile();
-        Cart cart = SaveManager.LoadCart("bernardo123", "123");
-        cart.addToCart(chair, 2);
-        System.out.println("TSotal price in cart: $" + cart.getTotalPrice());
-        chair.putOnSale(0.10f); // 10% off
-        System.out.println("Total price in cart: $" + cart.getTotalPrice());
-        SaveManager.SaveCart("bernardo123", cart);
-        SaveManager.saveCartsToFile();
-*/

@@ -10,12 +10,14 @@ public class Store {
         ItemCatalog = new ArrayList<>();
         Inventory = new HashMap<>();
     }
+    //getters
     public ArrayList<Item> getItemCatalog() {
         return ItemCatalog;
     }
     public Map<String, Integer> getInventory() {
         return Inventory;
     }
+    //add item to catalog and update inventory stock
     public void addItemToCatalog(Item item, int stock) {
         if (stock <0) return;
         if (!ItemCatalog.contains(item)){
@@ -23,6 +25,7 @@ public class Store {
         }
         Inventory.put(item.generateCode(), Inventory.getOrDefault(item.generateCode(), 0) + stock);
     }
+    //remove specified stock of item from inventory if available
     public boolean removeItemFromCatalog(Item item, int stock) {
         if (ItemCatalog.contains(item)){
             int currentStock = Inventory.get(item.generateCode());

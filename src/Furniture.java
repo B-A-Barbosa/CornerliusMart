@@ -13,8 +13,10 @@ public class Furniture extends Item {
         return "FUR-" + name.substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + material.toUpperCase();
     }
     
-    @Override
-    public String toString() {
-        return super.toString() + " | Material: " + material + " | Colour: " + colour;
+    public String getMaterial() {
+        return material;
+    }
+    public String getColor() {
+        return colour;
     }
 }

@@ -1,24 +1,22 @@
-enum Size {
-    XS, S, M, L, XL, XXL
-}
-
 public class Clothing extends Item {
     private String colour;
-    private Size size;
+    private String size;
 
     public Clothing(String name, String desc, String brand,
-                    float price, String colour, Size size) {                
+                    float price, String colour, String size) {                
         super(name, desc, brand, price);
         this.colour = colour;
         this.size = size;
     }
     @Override
     public String generateCode() {
-        return "CLO-" + name.substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + size.name();
+        return "CLO-" + name.substring(0,3).toUpperCase() + "-" + colour.toUpperCase() + "-" + size.toUpperCase();
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " | Colour: " + colour + " | Size: " + size;
+    public String getColour() {
+        return colour;
+    }
+    public String getSize() {
+        return size;
     }
 }
