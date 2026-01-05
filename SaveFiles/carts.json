@@ -2,30 +2,7 @@
   {
     "userID": "ber",
     "password": "123",
-    "ItemList": [
-      {
-        "type": "Clothing",
-        "colour": "Blue",
-        "size": "M",
-        "name": "T-Shirt",
-        "desc": "Cotton t-shirt",
-        "brand": "ClothCo",
-        "price": 19.99,
-        "percentOff": 0.0
-      },
-      {
-        "type": "Grocery",
-        "expiryDate": "10/10/10",
-        "name": "Apple",
-        "desc": "Fresh red apple",
-        "brand": "FarmFresh",
-        "price": 3.99,
-        "percentOff": 0.0
-      }
-    ],
-    "ItemCount": {
-      "GRO-APPLE-FRE": 10,
-      "CLO-T-S-BLUE-M": 2
-    }
+    "ItemList": [],
+    "ItemCount": {}
   }
 ]
