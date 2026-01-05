@@ -69,11 +69,10 @@ public class LoginFrame extends JFrame {
         //login button
         JButton loginButton = new JButton("Login");
         loginPanel.add(loginButton);
+        //delete account button
+        JButton deleteButton = new JButton("Delete Account");
+        loginPanel.add(deleteButton);
 
-        //empty placeholder to keep layout clean
-        loginPanel.add(new JLabel(""));
-
-        
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,12 +82,48 @@ public class LoginFrame extends JFrame {
 
                 //load cart using user and pass, if a cart is returned, open user frame
                 Cart cart = SaveManager.LoadCart(user, pass);
-                cart.SetStore(store);
-
-                if (cart != null) {
+                if (cart != null){
+                    cart.SetStore(store);
                     new UserFrame(cart);
                     dispose();
-                } 
+                }
+                else {
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Login failed. Please check your username and password."
+                    );
+                }
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String user = usernameField.getText();
+                String pass = passwordField.getText();
+
+                Cart cart = SaveManager.LoadCart(user, pass);
+                if (cart != null){
+                    //remove cart from saved carts
+                    //then save and reload carts to update and make sure the cart is truly gone
+                    cart.SetStore(store); //we still have to set the store for the cart so that it can return its stock
+                    SaveManager.DeleteCart(user);
+
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Account deleted for: " + user
+                    );
+
+                    //clear fields
+                    usernameField.setText("");
+                    passwordField.setText("");
+                }
+                else {
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "Account deletion failed. Please check your username and password."
+                    );
+                }
             }
         });
     }
@@ -125,6 +160,7 @@ public class LoginFrame extends JFrame {
                 Cart cart = new Cart(newUser, newPass);
                 SaveManager.SaveCart(cart);
                 SaveManager.SaveCartsToFile();
+                SaveManager.LoadCartsFromFile();
 
                 JOptionPane.showMessageDialog(
                     null,

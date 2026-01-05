@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ViewCartFrame extends JFrame {
 
@@ -38,10 +39,22 @@ public class ViewCartFrame extends JFrame {
         totalLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bottomPanel.add(totalLabel, BorderLayout.WEST);
 
-        //close button
-        JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(e -> dispose());
-        bottomPanel.add(closeButton, BorderLayout.EAST);
+        JButton checkoutButton = new JButton("Checkout");
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                if (cart.getItemList().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Your cart is empty!");
+                    return;
+                }
+                JOptionPane.showMessageDialog(null, "Thank you for your purchase of $" + cart.getTotalPrice() + "!");
+                cart.ClearCart();
+                SaveManager.SaveCart(cart);
+                SaveManager.SaveCartsToFile();
+                dispose();
+            }
+        });
+        bottomPanel.add(checkoutButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
 

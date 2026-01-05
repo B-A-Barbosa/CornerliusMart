@@ -22,8 +22,8 @@ public abstract class SaveManager {
     //use the gson builder to create a gson object with item adapter factory (explained above)
     //and pretty printing (adds tabbing and spacing so that the file is human-readable)
     private static Gson gson = new GsonBuilder().registerTypeAdapterFactory(itemAdapterFactory).setPrettyPrinting().create();
-    private static Map<String, Cart> userCarts = new HashMap<>();
-    private static Map<String, String> passwordMap = new HashMap<>();
+    private static Map<String, Cart> userCarts = new HashMap<>(); //Key: userID, Value: Cart
+    private static Map<String, String> passwordMap = new HashMap<>(); //Key: userID, Value: password
     private static final String CARTS_FILE = "SaveFiles/carts.json";
     private static final String STORE_FILE = "SaveFiles/store.json";
 
@@ -52,20 +52,28 @@ public abstract class SaveManager {
     }
     public static Cart LoadCart(String userID, String password) {
         if (password.equals(passwordMap.get(userID))){
-            System.out.println("Login successful!");
             return userCarts.get(userID);
         } else {
-            System.out.println("Incorrect password or username.");
             return null;
         }
+    }
+    public static void DeleteCart(String userID) {
+        //index through the carts item list and remove each item from the cart before removing the cart itself
+        //i use the carts removeFromCart method rather than just deleting its hashmap and arraylist
+        //so that the items return to the store inventory (remove from cart method handles this)
+        ArrayList<Item> itemsToRemove = new ArrayList<>(userCarts.get(userID).getItemList()); //i use a copy so that we dont get an error from iterating and modifying the same list
+        Cart cart = userCarts.get(userID);
+        for (Item item : itemsToRemove) {
+            cart.removeFromCart(item, cart.getItemCount(item.generateCode()));
+        }
+        userCarts.remove(userID);
+        passwordMap.remove(userID);
+        SaveCartsToFile();
+        LoadCartsFromFile();
     }
 
     //saves every cart in the hashmap to the carts.json file
     public static void SaveCartsToFile() {
-        if (userCarts.isEmpty()) {
-            System.out.println("No carts to save.");
-            return;
-        }
         //creates a new file writer to write to carts.json
         try (FileWriter writer = new FileWriter(CARTS_FILE)) {
             //go through each cart in the hasmap and write it to the file and to console
@@ -79,11 +87,12 @@ public abstract class SaveManager {
     //loads every cart from the carts.json file into the hashmap
     public static void LoadCartsFromFile() {
         //TODO error when file is empty (error when file doesnt exist???)
+        passwordMap.clear();
+        userCarts.clear();
         try (FileReader reader = new FileReader(CARTS_FILE)) {
             Cart[] loadedCarts = gson.fromJson(reader, Cart[].class);
             //if the file is empty or no carts were found, return
             if (loadedCarts == null) {
-                System.out.println("No carts found in file.");
                 return;
             }
             for (Cart cart : loadedCarts) {

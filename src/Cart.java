@@ -47,6 +47,11 @@ public class Cart {
         this.ItemList = ItemList;
     }
 
+    public void ClearCart() {
+        ItemList.clear();
+        ItemCount.clear();
+    }
+
     //add the item to the arraylist, and then update the hashmap count
     public void addToCart(Item item, int quantity) {
         if (store.removeItemFromCatalog(item, quantity)) {

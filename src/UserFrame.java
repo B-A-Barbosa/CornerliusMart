@@ -13,7 +13,7 @@ public class UserFrame extends JFrame {
 
     //labels inside the details panel
     private JPanel detailsPanel;
-    private JLabel nameLabel, brandLabel, descLabel, priceLabel;
+    private JLabel nameLabel, brandLabel, descLabel, priceLabel, stockLabel;
     //optional labels
     private JLabel sizeLabel, colorLabel, materialLabel;
 
@@ -72,6 +72,7 @@ public class UserFrame extends JFrame {
         brandLabel = new JLabel("Brand: ");
         descLabel = new JLabel("Description: ");
         priceLabel = new JLabel("Price: ");
+        stockLabel = new JLabel("Stock: ");
 
         //optional labels (start blank as we dont know if item has these yet)
         sizeLabel = new JLabel("");
@@ -83,6 +84,7 @@ public class UserFrame extends JFrame {
         detailsPanel.add(brandLabel);
         detailsPanel.add(descLabel);
         detailsPanel.add(priceLabel);
+        detailsPanel.add(stockLabel);
         detailsPanel.add(sizeLabel);
         detailsPanel.add(colorLabel);
         detailsPanel.add(materialLabel);
@@ -199,6 +201,8 @@ public class UserFrame extends JFrame {
         brandLabel.setText("Brand: " + item.getBrand());
         descLabel.setText("Description: " + item.getDesc());
         priceLabel.setText("Price: $" + item.getPrice());
+        stockLabel.setText("Stock: " + store.getInventory().getOrDefault(item.generateCode(), 0));
+
 
         //clear the optional labels
         sizeLabel.setText("");

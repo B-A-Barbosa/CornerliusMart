@@ -7,15 +7,8 @@ public class Main {
                     "Add Furniture",
                     "Add Grocery",
                     "Add Prepackaged",
-                    "Add Other",
-                    "Done"
+                    "Add Other"
             });
-
-            if (choice.equalsIgnoreCase("Done")) {
-                System.out.println("Starting Program");
-                break;
-            }
-
             //base fields for all items
             System.out.print("Name: ");
             String name = InputManager.scan.nextLine();
@@ -69,6 +62,8 @@ public class Main {
             }
             store.addItemToCatalog(item, stock);
             System.out.println("Item added successfully!");
+            //save store after adding items
+            SaveManager.SaveStore(store);
         }
     }
     public static void main(String[] args) {
@@ -78,13 +73,9 @@ public class Main {
         if (store == null) {
             store = new Store();
         }
-        //allow adding items before launching login frame
-        addItemsLoop(store);
-
-        //save store after adding items
-        SaveManager.SaveStore(store);
-
         //launch login frame
         new LoginFrame(store);
+        //allow adding items before launching login frame
+        addItemsLoop(store);
     }
 }

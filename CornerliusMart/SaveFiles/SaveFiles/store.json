@@ -1,0 +1,226 @@
+{
+  "ItemCatalog": [
+    {
+      "type": "Clothing",
+      "colour": "Blue",
+      "size": "M",
+      "name": "T-Shirt",
+      "desc": "Soft cotton tee",
+      "brand": "Hanes",
+      "price": 14.99
+    },
+    {
+      "type": "Clothing",
+      "colour": "Dark Blue",
+      "size": "32",
+      "name": "Jeans",
+      "desc": "Slim fit denim",
+      "brand": "Levi\u0027s",
+      "price": 59.99
+    },
+    {
+      "type": "Clothing",
+      "colour": "Black",
+      "size": "L",
+      "name": "Hoodie",
+      "desc": "Fleece hoodie",
+      "brand": "Nike",
+      "price": 79.99
+    },
+    {
+      "type": "Clothing",
+      "colour": "Grey",
+      "size": "M",
+      "name": "Jacket",
+      "desc": "Winter insulated jacket",
+      "brand": "North Face",
+      "price": 199.99
+    },
+    {
+      "type": "Clothing",
+      "colour": "White",
+      "size": "10",
+      "name": "Sneakers",
+      "desc": "Running shoes",
+      "brand": "Adidas",
+      "price": 89.99
+    },
+    {
+      "type": "Furniture",
+      "material": "Leather",
+      "colour": "Black",
+      "name": "Sofa",
+      "desc": "3-seat leather sofa",
+      "brand": "IKEA",
+      "price": 499.99
+    },
+    {
+      "type": "Furniture",
+      "material": "Oak",
+      "colour": "Brown",
+      "name": "Dining Table",
+      "desc": "Wooden table for 6",
+      "brand": "Structube",
+      "price": 349.99
+    },
+    {
+      "type": "Furniture",
+      "material": "Mesh",
+      "colour": "Black",
+      "name": "Office Chair",
+      "desc": "Ergonomic mesh chair",
+      "brand": "Staples",
+      "price": 129.99
+    },
+    {
+      "type": "Furniture",
+      "material": "Metal",
+      "colour": "Silver",
+      "name": "Bed Frame",
+      "desc": "Queen size frame",
+      "brand": "Wayfair",
+      "price": 259.99
+    },
+    {
+      "type": "Furniture",
+      "material": "Pine",
+      "colour": "Natural",
+      "name": "Bookshelf",
+      "desc": "5-tier wooden shelf",
+      "brand": "IKEA",
+      "price": 89.99
+    },
+    {
+      "type": "Grocery",
+      "name": "Milk",
+      "desc": "2% dairy milk",
+      "brand": "Dairyland",
+      "price": 3.49
+    },
+    {
+      "type": "Grocery",
+      "name": "Eggs",
+      "desc": "12-pack large eggs",
+      "brand": "Burnbrae",
+      "price": 4.99
+    },
+    {
+      "type": "Grocery",
+      "name": "Bread",
+      "desc": "Whole wheat loaf",
+      "brand": "Dempster\u0027s",
+      "price": 2.99
+    },
+    {
+      "type": "Grocery",
+      "name": "Bananas",
+      "desc": "Fresh bananas",
+      "brand": "Chiquita",
+      "price": 1.29
+    },
+    {
+      "type": "Grocery",
+      "name": "Chicken Breast",
+      "desc": "Boneless skinless",
+      "brand": "Maple Leaf",
+      "price": 9.99
+    },
+    {
+      "type": "Prepackaged",
+      "name": "Chips",
+      "desc": "Salted potato chips",
+      "brand": "Lays",
+      "price": 2.49
+    },
+    {
+      "type": "Prepackaged",
+      "name": "Chocolate Bar",
+      "desc": "Milk chocolate",
+      "brand": "Hershey",
+      "price": 1.49
+    },
+    {
+      "type": "Prepackaged",
+      "name": "Instant Noodles",
+      "desc": "Chicken flavour",
+      "brand": "Nissin",
+      "price": 0.99
+    },
+    {
+      "type": "Prepackaged",
+      "name": "Cereal",
+      "desc": "Honey oat cereal",
+      "brand": "Kellogg\u0027s",
+      "price": 4.99
+    },
+    {
+      "type": "Prepackaged",
+      "name": "Granola Bars",
+      "desc": "Box of 6",
+      "brand": "Nature Valley",
+      "price": 3.99
+    },
+    {
+      "type": "Other",
+      "name": "Notebook",
+      "desc": "200-page lined notebook",
+      "brand": "Hilroy",
+      "price": 2.49
+    },
+    {
+      "type": "Other",
+      "name": "Pen Pack",
+      "desc": "Pack of 10 blue pens",
+      "brand": "BIC",
+      "price": 3.99
+    },
+    {
+      "type": "Other",
+      "name": "Water Bottle",
+      "desc": "1L reusable bottle",
+      "brand": "Nalgene",
+      "price": 12.99
+    },
+    {
+      "type": "Other",
+      "name": "Flashlight",
+      "desc": "LED flashlight",
+      "brand": "Duracell",
+      "price": 9.99
+    },
+    {
+      "type": "Other",
+      "name": "Umbrella",
+      "desc": "Compact travel umbrella",
+      "brand": "Totes",
+      "price": 14.99
+    }
+  ],
+  "Inventory": {
+    "CLO-JAC-GREY-M": 20,
+    "GRO-EGGS-12-": 50,
+    "OTH-FLA-DURACELL": 25,
+    "PRE-INS-NISSIN": 100,
+    "CLO-SNE-WHITE-10": 25,
+    "FUR-SOF-BLACK-LEATHER": 10,
+    "GRO-BANANAS-FRE": 100,
+    "OTH-WAT-NALGENE": 30,
+    "PRE-GRA-NATURE VALLEY": 50,
+    "CLO-T-S-BLUE-M": 50,
+    "OTH-UMB-TOTES": 20,
+    "FUR-OFF-BLACK-MESH": 15,
+    "GRO-BREAD-WHO": 40,
+    "OTH-NOT-HILROY": 100,
+    "CLO-HOO-BLACK-L": 30,
+    "FUR-DIN-BROWN-OAK": 8,
+    "OTH-PEN-BIC": 80,
+    "FUR-BED-SILVER-METAL": 12,
+    "PRE-CHI-LAYS": 70,
+    "PRE-CHO-HERSHEY": 80,
+    "FUR-BOO-NATURAL-PINE": 20,
+    "GRO-CHICKEN BREAST-BON": 30,
+    "GRO-MILK-2% ": 60,
+    "CLO-JEA-DARK BLUE-32": 40,
+    "PRE-CER-KELLOGG\u0027S": 40
+  }
+}
